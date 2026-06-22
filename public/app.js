@@ -40,3 +40,8 @@ Option : ["string"],
 correct : "string" 
 })
 const question = mongoose.model('questions' , questionschema)  /// po
+app.listen(process.env.PORT || 5500, () =>{
+console.log('Server running');
+});
+
+
