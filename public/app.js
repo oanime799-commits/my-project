@@ -33,10 +33,10 @@ process.on('unhandledRejection', (err) => {
 });
 
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://sidrako:3339493@montazer.pdzcaav.mongodb.net/?specmy=montazer')
+mongoose.connect(process.env.MONGODB_URL)
 const questionschema = new mongoose.Schema({
-question : "",
-Option : [""],
-correct : "" 
+question : "string",
+Option : ["string"],
+correct : "string" 
 })
 const question = mongoose.model('questions' , questionschema)  /// po
