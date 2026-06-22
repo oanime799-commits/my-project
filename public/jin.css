@@ -1,0 +1,71 @@
+* {
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+}
+
+body {
+background: rgb(12, 8, 16) ;
+height: 100vh;
+
+
+}
+
+.tuy {
+
+border: 6px white solid ;
+width: 100%;
+height: 738px;
+
+}
+
+
+h1 {
+display: flex ;
+justify-content: center;
+align-items : center;
+font-size: 3em;
+}
+
+
+.con {
+position: relative;
+bottom: -400px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+
+.you {
+position: relative;
+bottom: -320px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+
+button {
+font-size: 1.7em;
+width: 14%;
+border-radius: 9px ;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 10px;
+}
+
+
+Input {
+border: 5px rgb(237, 151, 151) solid;
+position: absolute;
+top: 9px;
+left: 9px;
+background: palevioletred;
+font-size: x-large;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
