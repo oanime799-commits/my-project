@@ -30,6 +30,11 @@ process.on('unhandledRejection', (err) => {
   console.error('Unhandled Rejection:', err);
 });
 
+app.get("/" , (req , res) => {
+res.sendFile(__dirname + '/index.html')
+})
+
+
 const mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://sidrako:8763214@montazer.pdzcaav.mongodb.net/?appName=montazer')
 const questionschema = new mongoose.Schema({
