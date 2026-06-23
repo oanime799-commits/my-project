@@ -3,13 +3,13 @@ const app = express();
 const multer = require('multer');
 const upload = multer({dest : '/tmp/'});
 const port = 5500;
-const pdfparse = require("pdf-parse");
+const pdfparse = require("pdf-parse").default || require("pdf-parse");
 const fs = require("fs");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 const fike = fs.readFileSync(req.file.path); 
-const pdfdata = await pdfparse(fike);
+const pdfdata = await pdfparse(Buffer.from(fike));
 const text = pdfdata.text;
 console.log(text);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
