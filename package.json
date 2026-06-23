@@ -1,1 +1,15 @@
-{"scripts":{"start":"node public/app.js"},"dependencies":{"@anthropic-ai/sdk":"^0.105.0","@google/generative-ai":"^0.24.1","express":"^5.2.1","mongoose":"^9.7.1","multer":"^2.2.0","pdf-parse":"^2.4.5"}}
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "main": "public/app.js",
+  "scripts": {
+    "start": "node public/app.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.1",
+    "multer": "^2.2.0",
+    "pdf-parse": "^2.4.5"
+  }
+}

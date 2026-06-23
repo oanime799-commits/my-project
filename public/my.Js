@@ -23,7 +23,7 @@ answers[3].innerText = questions[currentQuestion].options[3];
 
 
 
-fetch("https://my-project-production-56bf.up.railway.app/" , {
+fetch("https://my-project-production-9dbd.up.railway.app/" , {
 method : "POST" ,
 body : JSON.stringify({
 answers : "" ,
