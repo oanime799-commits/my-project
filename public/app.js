@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 const fike = fs.readFileSync(req.file.path); 
-const pdfdata = pdfparse(fike);
+const pdfdata = await pdfparse(fike);
 const text = pdfdata.text;
 console.log(text);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -35,16 +35,18 @@ res.sendFile(__dirname + '/index.html')
 })
 
 
-const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://sidrako:8763214@montazer.pdzcaav.mongodb.net/?appName=montazer')
-const questionschema = new mongoose.Schema({
-question : "string",
-Option : ["string"],
-correct : "string" 
-})
-const question = mongoose.model('questions' , questionschema)  /// po
+
 app.listen(process.env.PORT || 5500, () =>{
 console.log('Server running');
 });
 
+
+const mongoose = require("mongoose");
+mongoose.connect('mongodb+srv://sidrako:8763214@montazer.pdzcaav.mongodb.net/?appName=montazer')
+const questionschema = new mongoose.Schema({
+question : string,
+Option : [string],
+correct : string 
+})
+const question = mongoose.model('questions' , questionschema)  /// po
 
