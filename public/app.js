@@ -19,9 +19,7 @@ await question.insertMany(questions);
 res.send("نجح انشاء الامتحان")
 })
 app.use(express.json());
-app.use(express.static("public") ,(req , res) => {
-res.send('تم ارسال الملف')
-});
+app.use(express.static(__dirname))
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);
