@@ -5,18 +5,29 @@ box-sizing: border-box;
 }
 
 body {
-background: rgb(12, 8, 16) ;
-height: 100vh;
-
-
+background:linear-gradient(135deg , #0f0f12 , #1a1a24) ;
+color: #f3f4f6;
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px;
 }
 
 .tuy {
-
-border: 6px white solid ;
+background-color: #1a1a1e;
+border: 1px #2d2d34 solid ;
+padding: 40PX 30px;
+border-radius: 16px;
 width: 100%;
+max-width: 600px;
+display: flex;
+flex-direction: column;
+align-items: center;
 height: 738px;
-
+gap: 30px;
+box-shadow: 0 10px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -24,27 +35,41 @@ h1 {
 display: flex ;
 justify-content: center;
 align-items : center;
-font-size: 3em;
+font-size: 2.2rem;
+color: #6366f1;
 }
 
 
 .con {
-position: relative;
-bottom: -400px;
+width: 100%;
 display: flex;
 justify-content: center;
-align-items: center;
 }
 
+.comn {
+padding: 12px 45px;
+border: none;
+color: white;
+background: linear-gradient(90deg , #6366f1 , #a855f7);
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 25px;
+cursor: pointer;
+transition: transform 0.2s;
+width: 100%;
+max-width: 200px;
+
+}
+
+.comn:hover{
+transform: scale(1.05);
+}
 
 
 .you {
 position: relative;
-bottom: -320px;
 display: flex;
-justify-content: center;
-align-items: center;
-
+gap: 15px;
 }
 
 
