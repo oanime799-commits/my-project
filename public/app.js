@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 const fileflter = (req, file, cb) => {
-if (file.mimetype === 'application/pdf'); {
+if (file.mimetype === 'application/pdf') {
 cb (null , true) ;
 } else {
 cb(new Error ('pdf فقط'),false);
