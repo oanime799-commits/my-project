@@ -101,10 +101,30 @@ border:#818cf8 ;
 
 
 Input.monk {
-border: 5px rgb(237, 151, 151) solid;
+border: 5px rgb(237, 151, 151 , 0.6) solid;
 position: absolute;
 top: 9px;
 left: 9px;
-box-shadow: 0 32px rgba(0, 0, 0, 0.4);
-border-radius: 20px;
+box-shadow: 0 0 0 0 transparent , 0 8px 32px rgba(237, 151, 0, 0.15),inset 0 1px 0 rgba(237, 151, 151 ,0.1);
+border-radius: 14px;
+width:calc(100% -18px) ;
+padding: 12px 20px;
+background: rgb(255, 255, 255,0.15);
+color: #ffffff;
+font-size: 15px;
+font-family:'segoe UI' , sans-serif ;
+letter-spacing: 0.3px;
+transition: all 0.3s ease;
+outline: none;
+backdrop-filter: blue(10px);
+}
+
+input.monk:focus{
+box-shadow: 0 0 0 0 transparent , 0 8px 32px rgba(237, 151, 0, 0.15),inset 0 1px 0 rgba(237, 151, 151 ,0.1);
+background: rgb(255, 255, 255,0.08);
+border-color: rgb(237, 151, 151);
+}
+
+input.monk::placeholder {
+color:rgba(255, 255, 255,0.4) ;
 }
