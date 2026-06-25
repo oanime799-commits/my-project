@@ -7,9 +7,12 @@ box-sizing: border-box;
 
 
 
-section{
+nav {
 position: relative;
 }
+
+
+
 
 
 
@@ -80,14 +83,6 @@ border:#818cf8 ;
 
 
 
-.upload-box {
-position: relative;
-display: inline-block;
-width: 200px;
-height: 50px;
-}
-
-
 Input.monk {
 border: 5px rgb(237, 151, 151 , 0.6) solid;
 position: absolute;
@@ -124,6 +119,13 @@ font-size:15px ;
 border: 16px solid transparent;
 border-radius: 20 px;
 box-shadow: 0 0 0 0 transparent , 0 8px 32px rgba(237, 151, 0, 0.15),inset 0 1px 0 rgba(237, 151, 151 ,0.1) ;
+}
+
+
+.byby {
+position: absolute;
+left: 18px;
+
 }
 
 
