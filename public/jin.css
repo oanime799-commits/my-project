@@ -120,7 +120,7 @@ color:rgba(255, 255, 255,0.4) ;
 
 
 button {
-position: absolute;
+position: relative;
 top: 5px;
 left: 18px;
 }
