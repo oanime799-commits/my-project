@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
 const multer = require('multer');
-const fileflter = (req, file, cb) => {
+const filefilter = (req, file, cb) => {
 if (file.mimetype === 'application/pdf') {
 cb (null , true) ;
 } else {
 cb(new Error ('pdf فقط'),false);
 }
 };
-const upload = multer({dest:'/tmp/',fileFilter})
+const upload = multer({dest:'/tmp/', filefilter}) ;
 const port = 5500;
 const pdfparse = require("pdf-parse").default || require("pdf-parse");
 const fs = require("fs");
