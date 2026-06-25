@@ -4,6 +4,19 @@ padding: 0px;
 box-sizing: border-box;
 }
 
+
+
+
+section{
+position: relative;
+}
+
+
+
+
+
+
+
 body {
 background:linear-gradient(135deg , #0f0f12 , #1a1a24) ;
 color: #f3f4f6;
@@ -78,7 +91,7 @@ Input.monk {
 border: 5px rgb(237, 151, 151 , 0.6) solid;
 position: absolute;
 top: 9px;
-left: 9px;
+left: 18px;
 box-shadow: 0 0 0 0 transparent , 0 8px 32px rgba(237, 151, 0, 0.15),inset 0 1px 0 rgba(237, 151, 151 ,0.1);
 border-radius: 14px;
 width:calc(100% -18px) ;
