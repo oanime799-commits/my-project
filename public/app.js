@@ -1,7 +1,14 @@
 const express = require('express');
 const app = express();
 const multer = require('multer');
-const upload = multer({dest : '/tmp/'});
+const fileflter = (req, file, cb) => {
+if (file.mimetype === 'application/pdf'); {
+cd (null , true) ;
+} else {
+cb(new Error ('pdf فقط'),false);
+}
+};
+const upload = multer({dest:'/tmp/',fileFilter})
 const port = 5500;
 const pdfparse = require("pdf-parse").default || require("pdf-parse");
 const fs = require("fs");
@@ -42,6 +49,7 @@ console.log('Server running');
 
 
 const mongoose = require("mongoose");
+const { error } = require('console');
 mongoose.connect('mongodb+srv://sidrako:8763214@montazer.pdzcaav.mongodb.net/?appName=montazer')
 const questionschema = new mongoose.Schema({
 question : string,
