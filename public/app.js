@@ -21,13 +21,20 @@ const fike = fs.readFileSync(req.file.path);
 const pdfdata = await pdfparse(Buffer.from(fike));
 const text = pdfdata.text;
 console.log(text);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-const result = await model.generateContent(`...${text}`);
-const questions = JSON.parse(result.response.text());
-await question.insertMany(questions);
-res.send("نجح انشاء الامتحان")
+})
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" ,
+generationConfig:{responseMimeType: "application/json"}
 })
 
+const Prompt = `
+[
+{
+"question" : "String",
+"options" : ["option1" , "option2" , "option3" , "option4"],
+} 
+]
+${text}
+`;
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);

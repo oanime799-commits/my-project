@@ -1,6 +1,5 @@
 
-let currentQuestion = 0;
-let score = 0;
+ 
 
 
 let questions = [
@@ -23,25 +22,35 @@ answers[3].innerText = questions[currentQuestion].options[3];
 
 
 function uploadFile() {
-const fileinput = document.querySelector('monk');
+const fileinput = document.querySelector('.monk');
 const file = fileinput.files[0];
 if (!file) {
 alert('اختر اول ملف pdf')
 }
 
-const formdata = new FormData();
-formdata.append('mydata' , file);
+const FormData = new FormData();
+FormData.append('mydata' , file);
+
+fetch("/upload" , {
+method : "POST" ,
+body : FormData  
+.then(response => response.json())
+.then(data =>{
+console.log(data)
+questions = data ;
+currentQuestion = 0;
+score = 0;
+alert(data);
+shoq();
+})
+.catch (error => {
+console.log("خطا في الاستقبال" , error)
+})
+
+})
+
 }
 
 
-fetch("https://my-project-production-9dbd.up.railway.app/upload" , {
-method : "POST" ,
-body : FormData
-})
-.then(response => response.JSON())
-.then(data =>{
-console.log(data)
-alert(data);
-}) 
 
 

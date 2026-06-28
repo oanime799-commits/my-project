@@ -17,17 +17,14 @@
 
 <input class="monk" accept="application/pdf" name="mydata" type="file" />
 
-
-
-
-<button class="byby" type="button" id="uploadBtn">رفع الملف</button> 
+<button class="byby" type="button" id="uploadBtn" onclick="uploadFile()">رفع الملف</button> 
 
 
 <div class="you">
-<button type="button" class="answer" >A</button>
-<button type="button" class="answer">B</button>
-<button type="button" class="answer">C</button>
-<button type="button" class="answer">D</button>
+<button type="button" class="answer" onclick="checkAnswer">A</button>
+<button type="button" class="answer" onclick="checkAnswer">B</button>
+<button type="button" class="answer" onclick="checkAnswer">C</button>
+<button type="button" class="answer" onclick="checkAnswer">D</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -35,10 +32,6 @@
 </form>
 </section>
 </body>
-
-
-
-
 
 </body>
 </html>
