@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const multer = require('multer');
+app.use(express.json());
+app.use(express.static(__dirname))
 const filefilter = (req, file, cb) => {
 if (file.mimetype === 'application/pdf') {
 cb (null , true) ;
@@ -8,7 +10,7 @@ cb (null , true) ;
 cb(new Error ('pdf فقط'),false);
 }
 };
-const upload = multer({dest:'/tmp/', filefilter}) ;
+const upload = multer({dest:'/tmp/', fileFilter}) ;
 const port = 5500;
 const pdfparse = require("pdf-parse").default || require("pdf-parse");
 const fs = require("fs");
@@ -25,8 +27,7 @@ const questions = JSON.parse(result.response.text());
 await question.insertMany(questions);
 res.send("نجح انشاء الامتحان")
 })
-app.use(express.json());
-app.use(express.static(__dirname))
+
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);

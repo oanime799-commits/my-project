@@ -22,19 +22,26 @@ answers[3].innerText = questions[currentQuestion].options[3];
 } ; 
 
 
+function uploadFile() {
+const fileinput = document.querySelector('monk');
+const file = fileinput.files[0];
+if (!file) {
+alert('اختر اول ملف pdf')
+}
+
+const formdata = new FormData();
+formdata.append('mydata' , file);
+}
+
 
 fetch("https://my-project-production-9dbd.up.railway.app/upload" , {
 method : "POST" ,
-body : JSON.stringify({
-answers : "" ,
-questions : "" ,
-options : ""
-}) ,
-headers : {"Content-Type":"application/json"}
+body : FormData
 })
 .then(response => response.JSON())
 .then(data =>{
 console.log(data)
+alert(data);
 }) 
 
 

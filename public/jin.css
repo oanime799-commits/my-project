@@ -13,8 +13,11 @@ position: relative;
 
 
 
-
-
+.container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+}
 
 body {
 background:linear-gradient(135deg , #0f0f12 , #1a1a24) ;
