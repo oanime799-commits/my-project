@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const multer = require('multer');
 app.use(express.json());
 app.use(express.static(__dirname))
+const multer = require('multer');
 const filefilter = (req, file, cb) => {
 if (file.mimetype === 'application/pdf') {
 cb (null , true) ;
