@@ -33,7 +33,7 @@ const Prompt = `
 "options" : ["option1" , "option2" , "option3" , "option4"],
 } 
 ]
-${text}
+
 `;
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
