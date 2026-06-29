@@ -23,7 +23,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 try {
 const fike = fs.readFileSync(req.file.path); 
-const pdfdata = await pdfparse(Buffer.from(fike));
+const pdfdata = await pdfparse(fike);
 const text = pdfdata.text;
 console.log(text);
 
