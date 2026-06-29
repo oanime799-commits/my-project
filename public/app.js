@@ -12,7 +12,7 @@ cb(new Error ('pdf فقط'),false);
 };
 const upload = multer({dest:'/tmp/', fileFilter}) ;
 const port = 5500;
-const { PDFParse } =  require("pdf-parse");
+const PDFParser = require("pdf2json");
 const fs = require("fs");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
@@ -22,11 +22,13 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 try {
-const fike = fs.readFileSync(req.file.path); 
-const parser = new PDFParse() ;
-const pdfdata = await parser.parse(fike);
-const text = pdfdata.text;
-
+const pdfParser = new PDFParser();
+const pdfdata = await new Promise((resolve, reject) => {
+  pdfParser.on("pdfParser_dataReady", resolve);
+  pdfParser.on("pdfParser_dataError", reject);
+  pdfParser.parseBuffer(fike);
+});
+const text = pdfParser.getRawTextContent();
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" ,
 generationConfig:{responseMimeType: "application/json"}
