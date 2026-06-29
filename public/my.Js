@@ -1,7 +1,3 @@
-
- 
-
-
 let questions = [
 {
 question : "",
@@ -14,10 +10,10 @@ let answers = document.querySelectorAll(".answer")
 let question = document.getElementById("question"); //==
 function shoq () {
 question.innerText = questions[currentQuestion].question;
-answers[0].innerText = questions[currentQuestion].options[0];
-answers[1].innerText = questions[currentQuestion].options[1];
-answers[2].innerText = questions[currentQuestion].options[2];
-answers[3].innerText = questions[currentQuestion].options[3];
+answers[0].innerText = "A  " + questions[currentQuestion].options[0];
+answers[1].innerText = "B  " + questions[currentQuestion].options[1];
+answers[2].innerText = "C  " + questions[currentQuestion].options[2];
+answers[3].innerText = "D  " + questions[currentQuestion].options[3];
 } ; 
 
 
