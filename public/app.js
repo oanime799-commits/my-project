@@ -21,17 +21,22 @@ const parser = new PDFParse({data:fike});
 const pdfdata = await parser.getText;
 await parser.destroy();
 const text = pdfdata.text;
-onst Prompt = `
+const Prompt = `
 [
 {
-"question" : "String",
-"options" : ["option1" , "option2" , "option3" , "option4"],
-} 
+"question": "String",
+"options":[
+    "option1"
+    "option2"
+    "option3"
+    "option4"
 ]
-
+}
+]
 `;
+
 const aiResponse = await fetch(
-  https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY},
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}' ,
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -45,13 +50,6 @@ const data = JSON.parse(aiData.candidates[0].content.parts[0].text);
 const finalResult = Array.isArray(data) ? data : [data];
 res.json(finalResult);
 c
-
-const finalresult = await model.generateContent(Prompt + text);
-const response = await result.response;
-const data = JSON.parse(response.text());
-const result = Array.isArray(data) ? data : [data] ;
-res.json(result);
-
 
 
  } catch (error) {
