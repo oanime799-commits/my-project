@@ -29,12 +29,12 @@ alert('اختر اول ملف pdf')
 return
 }
 
-const FormData = new FormData();
-FormData.append('mydata' , file);
+const formData = new FormData();
+formData.append('mydata' , file);
 
 fetch("/upload", {
 method : "POST" ,
-body : FormData  
+body : formData  
 .then(response => response.json())
 .then(data =>{
 console.log(data)
