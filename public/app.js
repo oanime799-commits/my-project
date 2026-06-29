@@ -12,7 +12,7 @@ cb(new Error ('pdf فقط'),false);
 };
 const upload = multer({dest:'/tmp/', fileFilter}) ;
 const port = 5500;
-const pdfparse = require("pdf-parse").default || require("pdf-parse");
+const pdfparse = require("pdf-parse");
 const fs = require("fs");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
@@ -44,11 +44,11 @@ const Prompt = `
 `;
 
 
-const result = await model.generateContent(Prompt + text);
+const finalresult = await model.generateContent(Prompt + text);
 const response = await result.response;
 const data = JSON.parse(response.text());
-
-res.json(data);
+const result = Array.isArray(data) ? data : [data] ;
+res.json(result);
 
 
 
