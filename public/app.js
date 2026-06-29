@@ -16,15 +16,22 @@ const pdfparse = require("pdf-parse").default || require("pdf-parse");
 const fs = require("fs");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+
+
+
+
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
+try {
 const fike = fs.readFileSync(req.file.path); 
 const pdfdata = await pdfparse(Buffer.from(fike));
 const text = pdfdata.text;
 console.log(text);
-})
+
+
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" ,
 generationConfig:{responseMimeType: "application/json"}
 })
+
 
 const Prompt = `
 [
@@ -35,6 +42,29 @@ const Prompt = `
 ]
 
 `;
+
+
+const result = await model.generateContent(Prompt + text);
+const response = await result.response;
+const data = JSON.parse(response.text());
+
+res.json(data);
+
+
+
+ } catch (error) {
+
+console.error("خطاء:", error);
+res.status(500).json({error:error.message});
+}
+
+
+
+
+})
+
+
+
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);

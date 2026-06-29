@@ -26,6 +26,7 @@ const fileinput = document.querySelector('.monk');
 const file = fileinput.files[0];
 if (!file) {
 alert('اختر اول ملف pdf')
+return
 }
 
 const FormData = new FormData();
