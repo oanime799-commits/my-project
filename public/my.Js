@@ -35,6 +35,7 @@ formData.append('mydata' , file);
 fetch("/upload", {
 method : "POST" ,
 body : formData  
+})
 .then(response => response.json())
 .then(data =>{
 console.log(data)
@@ -48,7 +49,6 @@ shoq();
 console.log("خطا في الاستقبال" , error)
 })
 
-})
 
 }
 
