@@ -22,19 +22,19 @@ const pdfdata = await parser.getText;
 await parser.destroy();
 const text = pdfdata.text;
 const Prompt = `
+TASK: Extract all questions from the provided text.
+FORMAT: Return ONLY a valid JSON array. No markdown, no prefixes, no explanations.
+STRUCTURE:
 [
-{
-"question": "String",
-"options":[
-    "option1"
-    "option2"
-    "option3"
-    "option4"
+  {
+    "question": "question text",
+    "options": ["opt1", "opt2", "opt3", "opt4"],
+    "correct": "correct option"
+  }
 ]
-}
-]
+CONSTRAINTS: If you cannot find questions, return an empty array [].
+TEXT TO ANALYZE: 
 `;
-
 const aiResponse = await fetch(
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}' ,
   {
