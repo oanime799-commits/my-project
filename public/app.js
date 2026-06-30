@@ -45,11 +45,20 @@ const aiResponse = await fetch(
     })
   }
 );
+
 const aiData = await aiResponse.json();
-const data = JSON.parse(aiData.candidates[0].content.parts[0].text);
-const finalResult = Array.isArray(data) ? data : [data];
-res.json(finalResult);
-c
+const rawText = aiData.candidates?.[0]?.content?.parts?.[0]?.text;
+if (!rawText) {
+    throw new Error("لم يتم العثور على نص في استجابة النموذج");
+}
+const cleanJson = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
+let finalResult;
+try {
+    finalResult = JSON.parse(cleanJson);
+} catch (e) {
+    throw new Error("فشل تحويل استجابة النموذج إلى تنسيق JSON صحيح");
+}
+res.json(Array.isArray(finalResult) ? finalResult : [finalResult]);
 
 
  } catch (error) {
@@ -58,12 +67,7 @@ console.error("خطاء:", error);
 res.status(500).json({error:error.message});
 }
 
-
-
-
 })
-
-
 
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {

@@ -24,22 +24,35 @@ if (!file) {
 alert('اختر اول ملف pdf')
 return
 }
-
 const formData = new FormData();
 formData.append('mydata' , file);
+
+
+
+
+
+
+
+
+
 
 fetch("/upload", {
 method : "POST" ,
 body : formData  
 })
 .then(response => response.json())
-.then(data =>{
-console.log(data)
+.then(data => {
+console.log("البيانات المستلمه:" , data);
+if (data && Array.isArray(data) && data.length > 0) {
 questions = data ;
 currentQuestion = 0;
 score = 0;
 alert(data);
 shoq();
+} else {
+console.error("الخادم لم يرسل البيانات صحيحه:" , data);
+alert("لم يتم استخراج الاسئله من الملف : خطا.")
+}
 })
 .catch (error => {
 console.log("خطا في الاستقبال" , error)
