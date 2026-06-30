@@ -35,6 +35,7 @@ STRUCTURE:
 CONSTRAINTS: If you cannot find questions, return an empty array [].
 TEXT TO ANALYZE: 
 `;
+
 const aiResponse = await fetch(
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}' ,
   {
@@ -47,20 +48,27 @@ const aiResponse = await fetch(
 );
 
 const aiData = await aiResponse.json();
+console.log("استجابة الـ AI الخام:", JSON.stringify(aiData));
+
+// 1. استخراج النص بأمان
 const rawText = aiData.candidates?.[0]?.content?.parts?.[0]?.text;
+
 if (!rawText) {
     throw new Error("لم يتم العثور على نص في استجابة النموذج");
 }
+
+// 2. تنظيف النص من علامات الـ Markdown (مثل ```json)
 const cleanJson = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
+
+// 3. محاولة التحويل مع معالجة الأخطاء
 let finalResult;
 try {
     finalResult = JSON.parse(cleanJson);
 } catch (e) {
-    throw new Error("فشل تحويل استجابة النموذج إلى تنسيق JSON صحيح");
+    throw new Error("فشل تحويل استجابة النموذج إلى JSON صحيح");
 }
+
 res.json(Array.isArray(finalResult) ? finalResult : [finalResult]);
-
-
  } catch (error) {
 
 console.error("خطاء:", error);
