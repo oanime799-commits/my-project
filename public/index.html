@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="on">
+  <link rel="stylesheet" href="jin.css">
+  
+  <title>Exam</title>
+
+</head>
+<body>
+<section>
+<form method="post" action="/upload" enctype="multipart/form-data">
+<nav class="tuy">
+<h1 class="quiz-title">Exam</h1>
+<p id="question"></p>
+
+<input class="monk" accept="application/pdf" name="mydata" type="file" />
+
+<button class="byby" type="button" id="uploadBtn" onclick="uploadFile()">رفع الملف</button> 
+
+
+<div class="you">
+<button type="button" class="answer" onclick="checkAnswer">A</button>
+<button type="button" class="answer" onclick="checkAnswer">B</button>
+<button type="button" class="answer" onclick="checkAnswer">C</button>
+<button type="button" class="answer" onclick="checkAnswer">D</button>
+</div>
+</nav>
+</form>
+</section>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="my.Js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
