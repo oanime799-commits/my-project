@@ -8,8 +8,7 @@ options: [],
 correct: ""
 }
 ]
-document.getElementById("uploadsection").style.display = "none";
-document.getElementById("answersection").style.display = "flex";
+
 let answers = document.querySelectorAll(".answer")
 let question = document.getElementById("question"); //==
 function shoq () {
@@ -65,6 +64,8 @@ if (data && Array.isArray(data) && data.length > 0) {
 questions = data ;
 currentQuestion = 0;
 score = 0;
+document.getElementById("uploadsection").style.display = "none";
+document.getElementById("answersection").style.display = "flex";
 shoq();
 } else {
 console.error("الخادم لم يرسل البيانات صحيحه:" , data);
