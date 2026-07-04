@@ -8,7 +8,8 @@ options: [],
 correct: ""
 }
 ]
-document.getElementById("uploadsection")
+document.getElementById("uploadsection").style.display = "none";
+document.getElementById("answersection").style.display = "flex";
 let answers = document.querySelectorAll(".answer")
 let question = document.getElementById("question"); //==
 function shoq () {
