@@ -64,8 +64,8 @@ if (data && Array.isArray(data) && data.length > 0) {
 questions = data ;
 currentQuestion = 0;
 score = 0;
-document.getElementById("uploadsection").style.display = "none";
-document.getElementById("answersection").style.display = "flex";
+document.getElementById("uploadSection").style.display = "none";
+document.getElementById("answerSection").style.display = "flex";
 shoq();
 } else {
 console.error("الخادم لم يرسل البيانات صحيحه:" , data);
