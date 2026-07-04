@@ -39,12 +39,12 @@ STRUCTURE:
 ]
 
 CONSTRAINTS:
-- Always return at least one question if the text has any meaningful content.
-- Only return an empty array [] if the text is completely empty or unreadable.
-- Questions and options must be in the same language as the source text.
-
+- Do NOT limit yourself to a fixed number of questions. Generate as many high-quality questions as the content justifies — could be 5, 10, 30, or more depending on the length and depth of the material. Cover every distinct concept, definition, and fact mentioned in the text.
 TEXT TO ANALYZE:
 `;
+
+
+
 
 console.log("API KEY:", process.env.GROQ_API_KEY);
 const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -59,7 +59,8 @@ const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions'
             { role: "system", content: Prompt },
             { role: "user", content: text }
         ],
-        temperature: 0.7
+        temperature: 0.7 ,
+        max_tokens:8000
     })
 });
 const aiData = await aiResponse.json();
