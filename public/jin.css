@@ -11,6 +11,20 @@ position: relative;
     flex-wrap: wrap; 
     justify-content: center; 
 }
+
+
+
+
+
+section{
+width: 100%;
+
+
+
+
+}
+
+
 body {
 background:linear-gradient(135deg , #0f0f12 , #1a1a24) ;
 color: #f3f4f6;
