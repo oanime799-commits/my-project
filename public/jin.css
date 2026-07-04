@@ -58,7 +58,7 @@ gap: 20px;
 justify-content: center;
 align-items: center;
 width: 100%;
-margin: 15px 0;
+margin: 40px 0 15px 0;
 
 }
 
@@ -177,4 +177,15 @@ bottom: 10px;
 
 .retry-btn:hover {
   background: #6a5ae0;
+}
+
+
+
+
+#question {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+  color: #f3f4f6;
 }
