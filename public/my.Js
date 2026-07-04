@@ -1,22 +1,37 @@
 let currentQuestion = 0;
 let score = 0;
+let questions = [];   // ← فاضية فعلاً
 
-let questions = [
-{
-question : "",
-options: [],
-correct: ""
-}
-]
+let answers = document.querySelectorAll(".answer");
+let question = document.getElementById("question");
 
-let answers = document.querySelectorAll(".answer")
-let question = document.getElementById("question"); //==
-function shoq () {
+function shoq() { 
 question.innerText = questions[currentQuestion].question;
 answers[0].innerText = "A  " + questions[currentQuestion].options[0];
 answers[1].innerText = "B  " + questions[currentQuestion].options[1];
 answers[2].innerText = "C  " + questions[currentQuestion].options[2];
 answers[3].innerText = "D  " + questions[currentQuestion].options[3];
+ }
+
+function checkAnswer(selectedIndex) {
+  if (!questions || questions.length === 0) {
+    alert("لازم ترفع ملف الامتحان اول");
+    return;
+  }
+
+  const correctAnswer = questions[currentQuestion].correct;
+  const selectedText = questions[currentQuestion].options[selectedIndex];
+
+  if (selectedText === correctAnswer) {
+    score++;
+  }
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    shoq();
+  } else {
+  } 
 } ; 
 
 function checkAnswer(selectedIndex) {
