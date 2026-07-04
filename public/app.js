@@ -60,7 +60,7 @@ const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions'
             { role: "user", content: text }
         ],
         temperature: 0.7 ,
-        max_tokens:8000
+        max_tokens:4000
     })
 });
 const aiData = await aiResponse.json();
