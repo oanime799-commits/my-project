@@ -1,3 +1,6 @@
+let currentQuestion = 0;
+let score = 0;
+
 let questions = [
 {
 question : "",
@@ -16,6 +19,23 @@ answers[2].innerText = "C  " + questions[currentQuestion].options[2];
 answers[3].innerText = "D  " + questions[currentQuestion].options[3];
 } ; 
 
+unction checkAnswer(selectedIndex) {
+  const correctAnswer = questions[currentQuestion].correct;
+  const selectedText = questions[currentQuestion].options[selectedIndex];
+
+  if (selectedText === correctAnswer) {
+    score++;
+  }
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    shoq();
+  } else {
+    question.innerText = "انتهى الامتحان! نتيجتك: " + score + " من " + questions.length;
+    answers.forEach(btn => btn.style.display = "none");
+  }
+}
 
 function uploadFile() {
 const fileinput = document.querySelector('.monk');
