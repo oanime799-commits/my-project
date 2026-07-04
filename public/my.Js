@@ -19,7 +19,7 @@ answers[2].innerText = "C  " + questions[currentQuestion].options[2];
 answers[3].innerText = "D  " + questions[currentQuestion].options[3];
 } ; 
 
-unction checkAnswer(selectedIndex) {
+function checkAnswer(selectedIndex) {
   const correctAnswer = questions[currentQuestion].correct;
   const selectedText = questions[currentQuestion].options[selectedIndex];
 
