@@ -136,7 +136,7 @@ bottom: 10px;
 
 .result-card {
   display: flex ;
-  
+
   align-items: center;
   text-align: center;
   background: #2b2540;
@@ -171,6 +171,7 @@ bottom: 10px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .retry-btn:hover {
