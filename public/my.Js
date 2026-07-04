@@ -20,6 +20,13 @@ answers[3].innerText = "D  " + questions[currentQuestion].options[3];
 } ; 
 
 function checkAnswer(selectedIndex) {
+  function checkAnswer(selectedIndex) {
+  if (!questions || questions.length === 0) {
+    alert("لازم ترفع ملف الامتحان اول");
+    return;
+  }
+  // ...باقي الكود الموجود
+}
   const correctAnswer = questions[currentQuestion].correct;
   const selectedText = questions[currentQuestion].options[selectedIndex];
 
@@ -76,8 +83,6 @@ alert("لم يتم استخراج الاسئله من الملف : خطا.")
 .catch (error => {
 console.log("خطا في الاستقبال" , error)
 })
-
-
 }
 
 

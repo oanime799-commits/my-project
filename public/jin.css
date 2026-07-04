@@ -252,3 +252,8 @@ bottom: 10px;
     pointer-events: none;
   }
 }
+
+
+.answersSection {
+display: none;
+}
