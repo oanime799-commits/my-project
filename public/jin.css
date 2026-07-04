@@ -136,6 +136,7 @@ bottom: 10px;
 
 .result-card {
   display: flex ;
+  
   align-items: center;
   text-align: center;
   background: #2b2540;
