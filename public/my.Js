@@ -32,9 +32,15 @@ function checkAnswer(selectedIndex) {
   if (currentQuestion < questions.length) {
     shoq();
   } else {
-    question.innerText = "انتهى الامتحان! نتيجتك: " + score + " من " + questions.length;
-    answers.forEach(btn => btn.style.display = "none");
-  }
+  question.innerText = "";
+  document.querySelector(".you").innerHTML = `
+    <div class="result-card">
+      <h2>🎉 انتهى الامتحان!</h2>
+      <p class="result-score">نتيجتك: <span>${score}</span> من ${questions.length}</p>
+      <button type="button" class="retry-btn" onclick="location.reload()">إعادة المحاولة</button>
+    </div>
+  `;
+}
 }
 
 function uploadFile() {
