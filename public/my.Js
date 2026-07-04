@@ -66,7 +66,7 @@ questions = data ;
 currentQuestion = 0;
 score = 0;
 document.getElementById("uploadSection").style.display = "none";
-document.getElementById("answerSection").style.display = "flex";
+document.getElementById("answersSection").style.display = "flex";
 shoq();
 } else {
 console.error("الخادم لم يرسل البيانات صحيحه:" , data);
