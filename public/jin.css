@@ -54,6 +54,7 @@ color: #6366f1;
 .you {
 position: relative;
 display: flex;
+flex-direction: column;
 gap: 20px;
 justify-content: center;
 align-items: center;
