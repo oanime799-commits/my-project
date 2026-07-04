@@ -1,3 +1,24 @@
+window.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splashScreen");
+  const logo = document.querySelector(".splash-logo");
+  const loader = document.querySelector(".splash-loader");
+  const welcome = document.querySelector(".splash-welcome");
+
+  // المرحلة 1: الشعار + اللودر لمدة 4 ثواني
+  setTimeout(() => {
+    logo.style.display = "none";
+    loader.style.display = "none";
+    welcome.style.display = "block";
+  }, 4000);
+
+  // المرحلة 2: بعد 3 ثواني إضافية (المجموع 7 ثواني) نطفي السبلاش
+  setTimeout(() => {
+    splash.classList.add("fade-out");
+    setTimeout(() => {
+      splash.style.display = "none";
+    }, 800); // نفس مدة الـ transition بالـ CSS
+  }, 7000);
+});
 let currentQuestion = 0;
 let score = 0;
 let questions = [];   // ← فاضية فعلاً
