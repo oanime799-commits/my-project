@@ -35,10 +35,9 @@ body : formData
 .then(data => {
 console.log("البيانات المستلمه:" , data);
 if (data && Array.isArray(data) && data.length > 0) {
-let questions = data ;
-let currentQuestion = 0;
+questions = data ;
+currentQuestion = 0;
 score = 0;
-alert(data);
 shoq();
 } else {
 console.error("الخادم لم يرسل البيانات صحيحه:" , data);
