@@ -37,8 +37,9 @@ function checkAnswer(selectedIndex) {
     <div class="result-card">
       <h2>🎉 انتهى الامتحان!</h2>
       <p class="result-score">نتيجتك: <span>${score}</span> من ${questions.length}</p>
+      </div>
       <button type="button" class="retry-btn" onclick="location.reload()">إعادة المحاولة</button>
-    </div>
+    
   `;
 }
 }
