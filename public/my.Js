@@ -8,7 +8,7 @@ options: [],
 correct: ""
 }
 ]
-
+document.getElementById("uploadsection")
 let answers = document.querySelectorAll(".answer")
 let question = document.getElementById("question"); //==
 function shoq () {
