@@ -17,6 +17,13 @@ const fs = require("fs");
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 try {
 const fike = fs.readFileSync(req.file.path);
+const fileHash = crypto.createHash("md5").update(fike).digest("hex");
+const existing = await Question.find({ fileHash });
+if (existing.length > 0) {
+      console.log("✅ الأسئلة موجودة بالخزن، ما راح نستدعي الذكاء الاصطناعي");
+      return res.json(existing);   // يرجعها مباشرة، بدون AI
+    }
+
 const parser = new PDFParse({data:fike});
 const pdfdata = await parser.getText();
 await parser.destroy();
@@ -43,9 +50,6 @@ CONSTRAINTS:
 TEXT TO ANALYZE:
 `;
 
-
-
-
 console.log("API KEY:", process.env.GROQ_API_KEY);
 const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
@@ -63,6 +67,7 @@ const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions'
         max_tokens:4000
     })
 });
+
 const aiData = await aiResponse.json();
 console.log("استجابة الـ AI الخام:", JSON.stringify(aiData));
 
@@ -71,37 +76,42 @@ if (!aiData.choices) {
     console.log(aiData);
     throw new Error("OpenAI API Error");
 }
-
 // 1. استخراج النص بأمان
 const rawText = aiData.choices[0].message.content;
 
 if (!rawText) {
-    throw new Error("لم يتم العثور على نص في استجابة النموذج");
+  throw new Error("لم يتم العثور على نص في استجابة النموذج");
 }
 
- // 2. تنظيف الـ Markdown
+// 2. تنظيف الـ Markdown
 const startIndex = rawText.indexOf('[');
 const endIndex = rawText.lastIndexOf(']');
+let finalResult;
 
 if (startIndex !== -1 && endIndex !== -1) {
-    const cleanJson = rawText.substring(startIndex, endIndex + 1);
-    try {
-        finalResult = JSON.parse(cleanJson);
-    } catch (e) {
-        throw new Error("لم يتمكن النظام من قراءة التنسيق بشكل صحيح");
-    }
+  const cleanJson = rawText.substring(startIndex, endIndex + 1);
+  try {
+    finalResult = JSON.parse(cleanJson);
+  } catch (e) {
+    throw new Error("لم يتمكن النظام من قراءة التنسيق بشكل صحيح");
+  }
 } else {
-    throw new Error("لم يتم العثور على مصفوفة بيانات في رد الذكاء الاصطناعي");
+  throw new Error("لم يتم العثور على بيانات مصفوفة في رد الذكاء الاصطناعي");
 }
 
-res.json(Array.isArray(finalResult) ? finalResult : [finalResult]);
- } catch (error) {
+const questionsArray = Array.isArray(finalResult) ? finalResult : [finalResult];
 
-console.error("خطاء:", error);
-res.status(500).json({error:error.message});
+const docsToSave = questionsArray.map(q => ({ ...q, fileHash }));
+await Question.insertMany(docsToSave);
+
+res.json(questionsArray);
+
+} catch (error) {
+  console.error("خطأ:", error);
+  res.status(500).json({ error: error.message });
 }
 
-})
+});   // ← هذا القوس الوحيد اللي يسكر app.post، يجي هنا بس بآخر كل شي
 
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
@@ -123,7 +133,7 @@ app.listen(process.env.PORT || 5500, () =>{
 console.log('Server running');
 });
 
-
+const crypto = require("crypto")
 const mongoose = require("mongoose");
 const { error } = require('console');
 mongoose.connect(process.env.MONGO_URI);
