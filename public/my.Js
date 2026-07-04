@@ -27,15 +27,6 @@ return
 const formData = new FormData();
 formData.append('mydata' , file);
 
-
-
-
-
-
-
-
-
-
 fetch("/upload", {
 method : "POST" ,
 body : formData  

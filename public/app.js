@@ -22,7 +22,12 @@ const pdfdata = await parser.getText();
 await parser.destroy();
 const text = pdfdata.text;
 const Prompt = `
-TASK: Extract all questions from the provided text.
+TASK: Analyze the provided text and produce multiple-choice exam questions.
+
+STEP 1: Check if the text already contains ready-made exam questions (with options like A/B/C/D or numbered choices).
+- If YES: Extract those existing questions exactly as they are, along with their options and correct answers.
+- If NO (the text is lecture content, explanations, or notes without ready questions): Generate NEW multiple-choice questions that test understanding of the key concepts in the text. Create at least 5 questions if the content allows it.
+
 FORMAT: Return ONLY a valid JSON array. No markdown, no prefixes, no explanations.
 STRUCTURE:
 [
@@ -32,9 +37,15 @@ STRUCTURE:
     "correct": "correct option"
   }
 ]
-CONSTRAINTS: If you cannot find questions, return an empty array [].
-TEXT TO ANALYZE: 
+
+CONSTRAINTS:
+- Always return at least one question if the text has any meaningful content.
+- Only return an empty array [] if the text is completely empty or unreadable.
+- Questions and options must be in the same language as the source text.
+
+TEXT TO ANALYZE:
 `;
+
 console.log("API KEY:", process.env.GROQ_API_KEY);
 const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
