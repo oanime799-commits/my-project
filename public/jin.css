@@ -41,9 +41,9 @@ gap: 30px;
 box-shadow: 0 10px rgba(0, 0, 0, 0.4);
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1300px) {
   .tuy {
-    max-width: 1600px;
+    max-width: 2800px;
   }
 }
 
