@@ -138,19 +138,6 @@ app.get("/last-exam", async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
-
-app.listen(process.env.PORT || 5500, () => {
-  console.log('Server running');
-});
-
-
-
-// ← هذا القوس الوحيد اللي يسكر app.post، يجي هنا بس بآخر كل شي
-
-// لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);
 });
@@ -160,26 +147,9 @@ process.on('unhandledRejection', (err) => {
   console.error('Unhandled Rejection:', err);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get("/" , (req , res) => {
 res.sendFile(__dirname + '/index.html')
 })
-
-
 
 app.listen(process.env.PORT || 5500, () =>{
 console.log('Server running');

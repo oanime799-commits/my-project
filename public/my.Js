@@ -54,13 +54,6 @@ function checkAnswer(selectedIndex) {
   } else {
   } 
 } ; 
-  function checkAnswer(selectedIndex) {
-  if (!questions || questions.length === 0) {
-    alert("لازم ترفع ملف الامتحان اول");
-    return;
-  }
-  // ...باقي الكود الموجود
-}
   const correctAnswer = questions[currentQuestion].correct;
   const selectedText = questions[currentQuestion].options[selectedIndex];
 
