@@ -83,7 +83,6 @@ function checkAnswer(selectedIndex) {
     
   `;
 }
-}
 
 function uploadFile() {
 const fileinput = document.querySelector('.monk');
