@@ -121,35 +121,34 @@ res.json(questionsArray);
   res.status(500).json({ error: error.message });
 }
 
-function loadPreviousExam() {
-  fetch("/last-exam")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("ماكو امتحان سابق مخزون");
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data && Array.isArray(data) && data.length > 0) {
-        questions = data;
-        currentQuestion = 0;
-        score = 0;
-        document.getElementById("uploadSection").style.display = "none";
-        document.getElementById("answersSection").style.display = "flex";
-        shoq();
-      } else {
-        alert("لا يوجد امتحان سابق");
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      alert("لا يوجد امتحان سابق مخزون، ارفع ملف جديد");
-    });
-}
+}); 
+app.get("/last-exam", async (req, res) => {
+  try {
+    const lastQuestion = await Question.findOne().sort({ _id: -1 });
+
+    if (!lastQuestion) {
+      return res.status(404).json({ error: "لا يوجد امتحان سابق مخزون" });
+    }
+
+    const questions = await Question.find({ fileHash: lastQuestion.fileHash });
+    res.json(questions)
+    } catch (error) {
+    console.error("خطأ:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.listen(process.env.PORT || 5500, () => {
+  console.log('Server running');
+});
 
 
 
-});   // ← هذا القوس الوحيد اللي يسكر app.post، يجي هنا بس بآخر كل شي
+// ← هذا القوس الوحيد اللي يسكر app.post، يجي هنا بس بآخر كل شي
 
 // لو صار خطأ غير متوقع
 process.on('uncaughtException', (err) => {
@@ -161,6 +160,21 @@ process.on('unhandledRejection', (err) => {
   console.error('Unhandled Rejection:', err);
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/" , (req , res) => {
 res.sendFile(__dirname + '/index.html')
 })
@@ -170,8 +184,6 @@ res.sendFile(__dirname + '/index.html')
 app.listen(process.env.PORT || 5500, () =>{
 console.log('Server running');
 });
-
-
 
 
 
