@@ -248,9 +248,9 @@ bottom: 10px;
 
 
 .retr-btn {
-position: fixed;
-top: 20px;
-right: 20px;
+position: absolute;
+top: 9px;
+right: 18px;
 background: #7c6cf0;
 color: #fff;
 border: none;
