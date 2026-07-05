@@ -117,31 +117,7 @@ alert("لم يتم استخراج الاسئله من الملف : خطا.")
 console.log("خطا في الاستقبال" , error)
 })
 }
-function loadPreviousExam() {
-  fetch("/last-exam")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("ماكو امتحان سابق مخزون");
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data && Array.isArray(data) && data.length > 0) {
-        questions = data;
-        currentQuestion = 0;
-        score = 0;
-        document.getElementById("uploadSection").style.display = "none";
-        document.getElementById("answersSection").style.display = "flex";
-        shoq();
-      } else {
-        alert("لا يوجد امتحان سابق");
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      alert("لا يوجد امتحان سابق مخزون، ارفع ملف جديد");
-    });
-}
+
 
 
 
