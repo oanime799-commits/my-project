@@ -248,12 +248,17 @@ bottom: 10px;
 
 
 .retr-btn {
+position: fixed;
+top: 20px;
+right: 20px;
 background: #7c6cf0;
 color: #fff;
 border: none;
 font-size: 16px;
-padding: 12px 30px;
+padding: 10px 24px;
 border-radius: 8px;
+cursor: pointer;
+z-index: 10;
 
 
 
