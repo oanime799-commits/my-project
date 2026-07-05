@@ -14,6 +14,16 @@ const upload = multer({dest:'/tmp/', fileFilter}) ;
 const port = 5500;
 const {PDFParse} = require("pdf-parse");
 const fs = require("fs");
+const crypto = require("crypto")
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URI);
+console.log("MONGO_URI =", process.env.MONGO_URI);
+const questionschema = new mongoose.Schema({
+question : String,
+options : [String],
+correct : String 
+})
+const Question = mongoose.model('questions' , questionschema)  /// po
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 try {
 const fike = fs.readFileSync(req.file.path);
@@ -133,15 +143,5 @@ app.listen(process.env.PORT || 5500, () =>{
 console.log('Server running');
 });
 
-const crypto = require("crypto")
-const mongoose = require("mongoose");
-const { error } = require('console');
-mongoose.connect(process.env.MONGO_URI);
-console.log("MONGO_URI =", process.env.MONGO_URI);
-const questionschema = new mongoose.Schema({
-question : String,
-options : [String],
-correct : String 
-})
-const question = mongoose.model('questions' , questionschema)  /// po
+
 
