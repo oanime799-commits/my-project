@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const logo = document.querySelector(".splash-logo");
   const loader = document.querySelector(".splash-loader");
   const welcome = document.querySelector(".splash-welcome");
+  
 
   // المرحلة 1: الشعار + اللودر لمدة 4 ثواني
   setTimeout(() => {
@@ -24,15 +25,43 @@ let currentQuestion = 0;
 let score = 0;
 let questions = [];
 
+const TIME_PER_QUESTION = 30;
+let timeLeft = TIME_PER_QUESTION;
+let timerInterval = null;
+
 let answers = document.querySelectorAll(".answer");
 let question = document.getElementById("question");
+let timerDisplay = document.getElementById("timerDisplay");
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIME_PER_QUESTION;
+  updateTimerDisplay();
+timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      goToNextQuestion();
+    }
+    }, 1000);
+}
 
+function updateTimerDisplay() {
+  if (!timerDisplay) return;
+  timerDisplay.innerText = `⏱ ${timeLeft}`;
+  if (timeLeft <= 5) {
+    timerDisplay.classList.add("timer-warning");
+  } else {
+    timerDisplay.classList.remove("timer-warning");
+  }
+}
 function shoq() {
   question.innerText = questions[currentQuestion].question;
   answers[0].innerText = "A " + questions[currentQuestion].options[0];
   answers[1].innerText = "B " + questions[currentQuestion].options[1];
   answers[2].innerText = "C " + questions[currentQuestion].options[2];
   answers[3].innerText = "D " + questions[currentQuestion].options[3];
+  startTimer();
 }
 
 function checkAnswer(selectedIndex) {
@@ -41,18 +70,25 @@ function checkAnswer(selectedIndex) {
     return;
   }
 
+  clearInterval(timerInterval);
+
   const correctAnswer = questions[currentQuestion].correct;
   const selectedText = questions[currentQuestion].options[selectedIndex];
 
   if (selectedText === correctAnswer) {
     score++;
   }
+  goToNextQuestion();
+}
 
+function goToNextQuestion() {
   currentQuestion++;
 
   if (currentQuestion < questions.length) {
     shoq();
   } else {
+    clearInterval(timerInterval);
+    if (timerDisplay) timerDisplay.innerText = "";
     question.innerText = "";
     document.querySelector(".you").innerHTML = `
       <div class="result-card">

@@ -21,8 +21,12 @@ console.log("MONGO_URI =", process.env.MONGO_URI);
 const questionschema = new mongoose.Schema({
 question : String,
 options : [String],
-correct : String 
+correct : String ,
+fileHash : String,
+examId : String, 
+createdAt : { type: Date, default: Date.now }  // ← جديد
 })
+
 const Question = mongoose.model('questions' , questionschema)  /// po
 app.post("/upload",upload.single('mydata'),async(req ,res) => {
 try {
