@@ -3,7 +3,7 @@ margin: 0px;
 padding: 0px;
 box-sizing: border-box;
 }
-nav {
+section {
 position: relative;
 }
 .container {
@@ -64,6 +64,7 @@ margin-bottom: 15px;
 
 
 .answer {
+top: 10px;
 font-size: 1.3rem;
 width:300px ;
 height: 99px;
