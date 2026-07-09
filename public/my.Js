@@ -25,7 +25,7 @@ let currentQuestion = 0;
 let score = 0;
 let questions = [];
 
-const TIME_PER_QUESTION = 30;
+const TIME_PER_QUESTION = 120;
 let timeLeft = TIME_PER_QUESTION;
 let timerInterval = null;
 
