@@ -71,7 +71,7 @@ const aiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions'
         'Authorization':`Bearer ${process.env.GROQ_API_KEY}`
     },
     body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
+        model: "openai/gpt-oss-120b",
         messages: [
             { role: "system", content: Prompt },
             { role: "user", content: text }
